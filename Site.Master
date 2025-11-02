@@ -1,0 +1,99 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.Master.cs" Inherits="NewsManagement.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="vi">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%: Page.Title %> - Báo Mới</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background-color: #f5f5f5; }
+        .header-logo { font-size: 1.5rem; font-weight: bold; color: #2c3e50; text-decoration: none; }
+        .header-nav a { color: #495057; text-decoration: none; margin: 0 15px; font-weight: 500; }
+        .header-nav a:hover { color: #007bff; }
+        .btn-login { background-color: #2c3e50; color: white; border: none; padding: 8px 20px; border-radius: 5px; text-decoration: none; }
+        .btn-login:hover { background-color: #1a252f; color: white; }
+        footer { background-color: #e9ecef; padding: 40px 0 20px; margin-top: 60px; }
+        .footer-category a { color: #6c757d; text-decoration: none; display: block; margin-bottom: 8px; }
+        .footer-category a:hover { color: #007bff; }
+        mark { background-color: #ffeb3b; padding: 2px 4px; }
+        .card-article { transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; }
+        .card-article:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.15) !important; }
+        .card-article img { transition: transform 0.3s ease; }
+        .card-article:hover img { transform: scale(1.05); }
+    </style>
+</head>
+<body>
+    <form runat="server">
+        <header style="background-color: white; padding: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <span style="font-size: 1.8rem; margin-right: 10px;">📰</span>
+                        <a class="header-logo" runat="server" href="~/Default.aspx">Báo Mới</a>
+                    </div>
+                    <nav class="header-nav d-none d-md-flex align-items-center">
+                        <a href="Category.aspx?cat=Công nghệ">Công nghệ</a>
+                        <a href="Category.aspx?cat=Kinh tế">Kinh tế</a>
+                        <a href="Category.aspx?cat=Du lịch">Du lịch</a>
+                        <a href="Category.aspx?cat=Sức khỏe">Sức khỏe</a>
+                        <a href="Category.aspx?cat=Văn hóa">Văn hóa</a>
+                        <a href="Category.aspx?cat=Ẩm thực">Ẩm thực</a>
+                    </nav>
+                    <div class="d-flex align-items-center">
+                        <a id="lnkAdmin" runat="server" class="btn-login d-none" href="~/Admin.aspx" style="margin-right: 15px; background-color: #28a745;">⚙️ Quản trị</a>
+                        <a href="Search.aspx" style="margin-right: 15px; color: #495057; font-size: 1.2rem;">🔍</a>
+                        <a id="lnkLogin" runat="server" class="btn-login" href="~/Login.aspx">Đăng nhập →</a>
+                        <a id="lnkLogout" runat="server" class="btn-login d-none" href="~/Logout.aspx">Đăng xuất ←</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <span style="font-size: 1.5rem; margin-right: 8px;">📰</span>
+                            <strong class="header-logo">Báo Mới</strong>
+                        </div>
+                        <p class="text-muted">Nguồn tin tức đáng tin cậy của bạn.</p>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <h6 class="mb-3"><strong>Chuyên mục</strong></h6>
+                        <div class="footer-category">
+                            <a href="Category.aspx?cat=Công nghệ">Công nghệ</a>
+                            <a href="Category.aspx?cat=Kinh tế">Kinh tế</a>
+                            <a href="Category.aspx?cat=Du lịch">Du lịch</a>
+                            <a href="Category.aspx?cat=Sức khỏe">Sức khỏe</a>
+                            <a href="Category.aspx?cat=Văn hóa">Văn hóa</a>
+                            <a href="Category.aspx?cat=Ẩm thực">Ẩm thực</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <h6 class="mb-3"><strong>Liên kết nhanh</strong></h6>
+                        <div class="footer-category">
+                            <a href="Default.aspx">Trang chủ</a>
+                            <a href="Search.aspx">Tìm kiếm</a>
+                            <a href="Login.aspx">Đăng nhập</a>
+                            <a href="Admin.aspx">Quản trị</a>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="text-center text-muted">
+                    <p>&copy; <%: DateTime.Now.Year %> Báo Mới. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="Scripts.js"></script>
+</body>
+</html>
+
+

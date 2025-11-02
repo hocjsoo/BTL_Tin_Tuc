@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<News>
+  <Article ID="seed-1">
+    <Title>Ra mắt nền tảng truyền thông số</Title>
+    <Summary>Nền tảng mới giúp tối ưu phân phối nội dung đa kênh.</Summary>
+    <Content>Hôm nay đơn vị công bố nền tảng truyền thông số với nhiều tính năng như lịch đăng, phân tích hiệu quả và phân phối đa kênh.</Content>
+    <Author>admin</Author>
+    <Role>Admin</Role>
+    <CreatedAt>2025-01-01T15:00:00.0000000+07:00</CreatedAt>
+    <Category>Kinh tế</Category>
+    <ImageUrl>~/Images/fe15a731a6974dffa475f7455b2206aa.jpg</ImageUrl>
+  </Article>
+  <Article ID="seed-2">
+    <Title>Sự kiện công nghệ 2025</Title>
+    <Summary>Tổng hợp điểm nhấn sự kiện công nghệ đầu năm 2025.</Summary>
+    <Content>Sự kiện quy tụ nhiều chuyên gia, tập trung vào AI, Cloud và bảo mật. Bài viết tổng hợp chi tiết các phiên thảo luận.</Content>
+    <Author>editor</Author>
+    <Role>Editor</Role>
+    <CreatedAt>2025-02-15T16:30:00.0000000+07:00</CreatedAt>
+    <Category>Công nghệ</Category>
+    <ImageUrl>~/Images/5823e0d8224346fe85d4ca039e304c98.png</ImageUrl>
+  </Article>
+</News>
