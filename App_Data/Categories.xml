@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Categories>
+  <Category ID="003c0972c3584ce291d748cf695d80c2">
+    <Name>Công nghệ</Name>
+    <Description>Tin tức về công nghệ</Description>
+    <CreatedAt>2025-11-09T07:59:11.3805699Z</CreatedAt>
+  </Category>
+  <Category ID="430564425d6340258a375250893fe503">
+    <Name>Kinh tế</Name>
+    <Description>Tin tức về kinh tế</Description>
+    <CreatedAt>2025-11-09T07:59:11.3805699Z</CreatedAt>
+  </Category>
+  <Category ID="80a025dc4afa42adaf74f30c2608f995">
+    <Name>Du lịch</Name>
+    <Description>Tin tức về du lịch</Description>
+    <CreatedAt>2025-11-09T07:59:11.3805699Z</CreatedAt>
+  </Category>
+  <Category ID="d25af715a96a4e3f96676b908005dc44">
+    <Name>Văn hóa</Name>
+    <Description>Tin tức về văn hóa</Description>
+    <CreatedAt>2025-11-09T07:59:11.3805699Z</CreatedAt>
+  </Category>
+  <Category ID="ecfe3b041b9a4f32bf32549db4a7fda3">
+    <Name>Ẩm thực</Name>
+    <Description>Tin tức về ẩm thực</Description>
+    <CreatedAt>2025-11-09T07:59:11.3805699Z</CreatedAt>
+  </Category>
+  <Category ID="7a1cf1d4f75c47b09b5a52e4f611145f">
+    <Name>Đời Sống</Name>
+    <Description>Tin tức về đời sống</Description>
+    <CreatedAt>2025-11-09T07:59:40.3187262Z</CreatedAt>
+  </Category>
+  <Category ID="627147e897de4d069ad408f27b729ccb">
+    <Name>Thể thao</Name>
+    <Description>Tin Tức về thể thao</Description>
+    <CreatedAt>2025-11-09T16:41:19.3088902Z</CreatedAt>
+  </Category>
+</Categories>

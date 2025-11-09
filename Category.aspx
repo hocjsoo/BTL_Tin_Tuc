@@ -1,11 +1,8 @@
-<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="Category.aspx.cs" Inherits="NewsManagement.Category" %>
+<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="Category.aspx.cs" Inherits="NewsWebsite.Category" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container" style="padding-top: 30px; padding-bottom: 30px;">
-        <div class="d-flex align-items-center mb-4">
-            <div style="width: 4px; height: 40px; background-color: #ff6b35; margin-right: 15px;"></div>
-            <h2 class="mb-0">| Chuyên mục: <asp:Label ID="lblCategoryName" runat="server" /></h2>
-        </div>
+    <div class="container" style="padding-top: 40px; padding-bottom: 50px;">
+        <h2 class="section-title">Chuyên mục: <asp:Label ID="lblCategoryName" runat="server" /></h2>
         
         <asp:Repeater ID="rptNews" runat="server" OnItemDataBound="rptNews_ItemDataBound">
             <HeaderTemplate><div class="row"></HeaderTemplate>

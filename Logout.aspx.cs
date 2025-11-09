@@ -1,7 +1,7 @@
 using System;
 using System.Web.UI;
 
-namespace NewsManagement
+namespace NewsWebsite
 {
     public partial class Logout : Page
     {

@@ -1,15 +1,13 @@
-<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="Search.aspx.cs" Inherits="NewsManagement.Search" %>
+<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="Search.aspx.cs" Inherits="NewsWebsite.Search" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container" style="padding-top: 30px; padding-bottom: 30px;">
+    <div class="container" style="padding-top: 40px; padding-bottom: 50px;">
         <div class="mb-4">
-            <div class="d-flex align-items-center mb-4">
-                <div style="width: 4px; height: 40px; background-color: #ff6b35; margin-right: 15px;"></div>
-                <h2 class="mb-0">Tìm kiếm tin tức</h2>
-            </div>
+            <h2 class="section-title mb-4">Tìm kiếm tin tức</h2>
             
-            <div class="input-group mb-4" style="max-width: 600px;">
-                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Nhập từ khóa tìm kiếm..." AutoPostBack="false" />
+            <div class="input-group mb-4" style="max-width: 700px;">
+                <span class="input-group-text" style="background: white; border-right: none;"><i class="fas fa-search"></i></span>
+                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Nhập từ khóa tìm kiếm..." AutoPostBack="false" style="border-left: none; border-right: none;" />
                 <asp:Button ID="btnSearch" runat="server" Text="Tìm kiếm" CssClass="btn btn-primary" OnClick="btnSearch_Click" />
             </div>
             
@@ -28,7 +26,7 @@
                             </div>
                             <div class="card-footer bg-white d-flex justify-content-between align-items-center">
                                 <small class="text-muted"><%# Eval("Author") %> | <%# ((DateTime)Eval("CreatedAt")).ToLocalTime().ToString("dd/MM/yyyy") %></small>
-                                <a class="text-primary" href='Details.aspx?id=<%# Eval("Id") %>' style="text-decoration: none;">Đọc thêm →</a>
+                                <a class="text-primary" href='Details.aspx?id=<%# Eval("Id") %>' style="text-decoration: none;"><i class="fas fa-arrow-right"></i> Đọc thêm</a>
                             </div>
                         </div>
                     </div>
@@ -37,8 +35,8 @@
             </asp:Repeater>
             
             <asp:Panel ID="pnlNoResults" runat="server" Visible="false">
-                <div class="alert alert-info">
-                    <h5>Không tìm thấy kết quả</h5>
+                <div class="alert alert-info text-center">
+                    <h5><i class="fas fa-search"></i> Không tìm thấy kết quả</h5>
                     <p>Không có bài viết nào phù hợp với từ khóa bạn tìm kiếm.</p>
                 </div>
             </asp:Panel>
@@ -46,6 +44,20 @@
     </div>
     
     <script type="text/javascript">
+        // Add icon to search button
+        (function() {
+            var searchButtonId = '<%= btnSearch.ClientID %>';
+            setTimeout(function() {
+                var searchButton = document.getElementById(searchButtonId);
+                if (searchButton) {
+                    var icon = document.createElement('i');
+                    icon.className = 'fas fa-search';
+                    icon.style.marginRight = '6px';
+                    searchButton.insertBefore(icon, searchButton.firstChild);
+                }
+            }, 100);
+        })();
+        
         // Auto-search on typing
         (function() {
             var searchBoxId = '<%= txtSearch.ClientID %>';

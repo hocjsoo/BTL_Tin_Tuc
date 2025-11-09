@@ -2,9 +2,9 @@ using System;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using NewsManagement.App_Code;
+using NewsWebsite.App_Code;
 
-namespace NewsManagement
+namespace NewsWebsite
 {
     public partial class Category : Page
     {
@@ -16,7 +16,7 @@ namespace NewsManagement
                 lblCategoryName.Text = string.IsNullOrEmpty(category) ? "Tất cả" : category;
                 
                 var items = string.IsNullOrEmpty(category) 
-                    ? NewsManager.GetAll() 
+                    ? NewsManager.GetPublished() 
                     : NewsManager.GetByCategory(category);
                 
                 var itemsList = items.ToList();

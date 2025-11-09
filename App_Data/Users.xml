@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Users>
+  <User ID="admin">
+    <FullName>Administrator</FullName>
+    <Email>admin@example.com</Email>
+    <Password>password</Password>
+    <Role>Admin</Role>
+    <CreatedAt>2025-11-01T03:58:04.8273408Z</CreatedAt>
+  </User>
+  <User ID="ea547b5dcd694a0ba76f4cd2ab19c366">
+    <FullName>Danh Hoc</FullName>
+    <Email>ndhoc2816@gmali.com</Email>
+    <Password>Abc12345</Password>
+    <Role>Editor</Role>
+    <CreatedAt>2025-11-01T03:58:04.8283439Z</CreatedAt>
+    <Gender>Male</Gender>
+    <DateOfBirth>2005-06-18T00:00:00.0000000</DateOfBirth>
+  </User>
+  <User ID="57e1df290b444914aebb28bbc5e000c4">
+    <FullName>Editer</FullName>
+    <Email>editor@example.com</Email>
+    <Password>editor@example.com</Password>
+    <Role>Editor</Role>
+    <Gender></Gender>
+    <DateOfBirth></DateOfBirth>
+    <CreatedAt>2025-11-09T16:21:07.9635939Z</CreatedAt>
+  </User>
+</Users>

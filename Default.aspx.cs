@@ -3,9 +3,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using NewsManagement.App_Code;
+using NewsWebsite.App_Code;
 
-namespace NewsManagement
+namespace NewsWebsite
 {
     public partial class _Default : Page
     {
@@ -18,20 +18,12 @@ namespace NewsManagement
             }
         }
         
-        protected void btnSearchHome_Click(object sender, EventArgs e)
-        {
-            string keyword = txtSearchHome.Text.Trim();
-            if (!string.IsNullOrEmpty(keyword))
-            {
-                Response.Redirect("Search.aspx?q=" + System.Web.HttpUtility.UrlEncode(keyword));
-            }
-        }
-
         private void BindPaged()
         {
-            var all = NewsManager.GetAll();
+            var all = NewsManager.GetPublished();
             // Filter to only articles with valid ID (must exist in admin)
             var allList = System.Linq.Enumerable.ToList(all).Where(a => !string.IsNullOrEmpty(a.Id)).ToList();
+            
             
             // Get hero article index from query string (default to 0)
             int heroIndex = 0;
@@ -196,7 +188,7 @@ namespace NewsManagement
 
         protected void btnHeroPrev_Click(object sender, EventArgs e)
         {
-            var all = NewsManager.GetAll();
+            var all = NewsManager.GetPublished();
             var allList = System.Linq.Enumerable.ToList(all);
             if (allList.Count == 0) return;
             
@@ -219,7 +211,7 @@ namespace NewsManagement
 
         protected void btnHeroNext_Click(object sender, EventArgs e)
         {
-            var all = NewsManager.GetAll();
+            var all = NewsManager.GetPublished();
             var allList = System.Linq.Enumerable.ToList(all);
             if (allList.Count == 0) return;
             

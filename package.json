@@ -1,0 +1,28 @@
+{
+  "name": "newswbsite-psd-converter",
+  "version": "1.0.0",
+  "description": "Script để convert HTML sang image cho Photoshop",
+  "main": "convert-to-psd.js",
+  "scripts": {
+    "convert": "node convert-to-psd.js"
+  },
+  "keywords": [
+    "html",
+    "psd",
+    "converter",
+    "screenshot"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^21.0.0"
+  }
+}
+
+
+
+
+
+
+
+

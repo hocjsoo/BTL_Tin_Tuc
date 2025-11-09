@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Hosting;
 using System.Xml.Linq;
 
-namespace NewsManagement.App_Code
+namespace NewsWebsite.App_Code
 {
     public class NewsManager
     {
@@ -23,6 +23,9 @@ namespace NewsManagement.App_Code
             public string Category { get; set; }
             public string ImageUrl { get; set; }
             public DateTime CreatedAt { get; set; }
+            public string Status { get; set; } // Draft, Published, Scheduled
+            public DateTime? PublishedAt { get; set; }
+            public DateTime? ScheduledAt { get; set; }
         }
 
         private static XDocument LoadOrCreate()
@@ -55,6 +58,38 @@ namespace NewsManagement.App_Code
                 .ToList();
         }
 
+        public static IEnumerable<NewsItem> GetPublished()
+        {
+            var now = DateTime.UtcNow;
+            return GetAll().Where(n => 
+            {
+                // Normalize status string (trim and handle null)
+                string status = (n.Status ?? "Draft").Trim();
+                
+                // Priority 1: Check if status is Published (case-insensitive)
+                if (string.Equals(status, "Published", StringComparison.OrdinalIgnoreCase))
+                {
+                    // If status is Published, always show it (regardless of PublishedAt)
+                    // PublishedAt is just metadata for when it was published, not a scheduling mechanism
+                    // Scheduling is handled by ScheduledAt and status = "Scheduled"
+                    return true;
+                }
+                
+                // Priority 2: Check if status is Scheduled and scheduled time has passed
+                if (string.Equals(status, "Scheduled", StringComparison.OrdinalIgnoreCase) && 
+                    n.ScheduledAt.HasValue && 
+                    n.ScheduledAt.Value <= now)
+                {
+                    // Auto-publish scheduled articles that have passed their scheduled time
+                    // (Note: This doesn't update the database, it's just for display)
+                    return true;
+                }
+                
+                // Other statuses (Draft, empty, null, etc.) are not published
+                return false;
+            }).OrderByDescending(n => n.PublishedAt ?? n.ScheduledAt ?? n.CreatedAt);
+        }
+
         public static NewsItem GetById(string id)
         {
             if (string.IsNullOrWhiteSpace(id)) return null;
@@ -66,9 +101,9 @@ namespace NewsManagement.App_Code
         public static IEnumerable<NewsItem> Search(string keyword)
         {
             keyword = (keyword ?? string.Empty).Trim();
-            if (keyword.Length == 0) return GetAll();
+            if (keyword.Length == 0) return GetPublished();
             var lower = keyword.ToLowerInvariant();
-            return GetAll().Where(n =>
+            return GetPublished().Where(n =>
                 (n.Title ?? string.Empty).ToLowerInvariant().Contains(lower) ||
                 (n.Summary ?? string.Empty).ToLowerInvariant().Contains(lower) ||
                 (n.Content ?? string.Empty).ToLowerInvariant().Contains(lower));
@@ -76,9 +111,9 @@ namespace NewsManagement.App_Code
 
         public static IEnumerable<NewsItem> GetByCategory(string category)
         {
-            if (string.IsNullOrWhiteSpace(category)) return GetAll();
+            if (string.IsNullOrWhiteSpace(category)) return GetPublished();
             var lower = category.ToLowerInvariant();
-            return GetAll().Where(n => string.Equals(n.Category ?? string.Empty, category, StringComparison.OrdinalIgnoreCase));
+            return GetPublished().Where(n => string.Equals(n.Category ?? string.Empty, category, StringComparison.OrdinalIgnoreCase));
         }
 
         public static string Create(NewsItem item)
@@ -98,7 +133,10 @@ namespace NewsManagement.App_Code
                 new XElement("Role", item.Role ?? string.Empty),
                 new XElement("Category", item.Category ?? string.Empty),
                 new XElement("ImageUrl", item.ImageUrl ?? string.Empty),
-                new XElement("CreatedAt", item.CreatedAt.ToString("o"))
+                new XElement("CreatedAt", item.CreatedAt.ToString("o")),
+                new XElement("Status", item.Status ?? "Draft"),
+                new XElement("PublishedAt", item.PublishedAt.HasValue ? item.PublishedAt.Value.ToString("o") : string.Empty),
+                new XElement("ScheduledAt", item.ScheduledAt.HasValue ? item.ScheduledAt.Value.ToString("o") : string.Empty)
             );
             doc.Root.Add(el);
             Save(doc);
@@ -127,6 +165,15 @@ namespace NewsManagement.App_Code
                 var toWrite = item.CreatedAt == default(DateTime) ? existing : item.CreatedAt;
                 createdAtEl.SetValue(toWrite.ToString("o"));
             }
+            var statusEl = el.Element("Status");
+            if (statusEl != null) statusEl.SetValue(item.Status ?? "Draft");
+            else el.Add(new XElement("Status", item.Status ?? "Draft"));
+            var publishedAtEl = el.Element("PublishedAt");
+            if (publishedAtEl != null) publishedAtEl.SetValue(item.PublishedAt.HasValue ? item.PublishedAt.Value.ToString("o") : string.Empty);
+            else el.Add(new XElement("PublishedAt", item.PublishedAt.HasValue ? item.PublishedAt.Value.ToString("o") : string.Empty));
+            var scheduledAtEl = el.Element("ScheduledAt");
+            if (scheduledAtEl != null) scheduledAtEl.SetValue(item.ScheduledAt.HasValue ? item.ScheduledAt.Value.ToString("o") : string.Empty);
+            else el.Add(new XElement("ScheduledAt", item.ScheduledAt.HasValue ? item.ScheduledAt.Value.ToString("o") : string.Empty));
             Save(doc);
             return true;
         }
@@ -145,9 +192,41 @@ namespace NewsManagement.App_Code
         private static NewsItem ToNewsItem(XElement el)
         {
             DateTime dt;
+            DateTime? publishedDt = null;
+            DateTime? scheduledDt = null;
+            
             var createdAtEl = el.Element("CreatedAt");
             var createdAtStr = createdAtEl != null ? createdAtEl.Value : null;
             var parsed = DateTime.TryParse(createdAtStr, out dt);
+            
+            var publishedAtEl = el.Element("PublishedAt");
+            if (publishedAtEl != null && !string.IsNullOrWhiteSpace(publishedAtEl.Value))
+            {
+                DateTime parsedPublished;
+                if (DateTime.TryParse(publishedAtEl.Value, out parsedPublished))
+                {
+                    publishedDt = parsedPublished;
+                }
+            }
+            
+            var scheduledAtEl = el.Element("ScheduledAt");
+            if (scheduledAtEl != null && !string.IsNullOrWhiteSpace(scheduledAtEl.Value))
+            {
+                DateTime parsedScheduled;
+                if (DateTime.TryParse(scheduledAtEl.Value, out parsedScheduled))
+                {
+                    scheduledDt = parsedScheduled;
+                }
+            }
+            
+            // Read Status - if not exists, default to Draft
+            var statusEl = el.Element("Status");
+            string status = "Draft";
+            if (statusEl != null && !string.IsNullOrWhiteSpace(statusEl.Value))
+            {
+                status = statusEl.Value.Trim();
+            }
+            
             return new NewsItem
             {
                 Id = (string)el.Attribute("ID"),
@@ -158,7 +237,10 @@ namespace NewsManagement.App_Code
                 Role = (string)el.Element("Role"),
                 Category = (string)el.Element("Category"),
                 ImageUrl = (string)el.Element("ImageUrl"),
-                CreatedAt = parsed ? dt : DateTime.MinValue
+                CreatedAt = parsed ? dt : DateTime.MinValue,
+                Status = status,
+                PublishedAt = publishedDt,
+                ScheduledAt = scheduledDt
             };
         }
     }

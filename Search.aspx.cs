@@ -2,9 +2,9 @@ using System;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using NewsManagement.App_Code;
+using NewsWebsite.App_Code;
 
-namespace NewsManagement
+namespace NewsWebsite
 {
     public partial class Search : Page
     {
@@ -29,7 +29,7 @@ namespace NewsManagement
         
         private void LoadAllArticles()
         {
-            var allArticles = NewsManager.GetAll().ToList();
+            var allArticles = NewsManager.GetPublished().ToList();
             if (allArticles.Count > 0)
             {
                 rptSearchResults.DataSource = allArticles;

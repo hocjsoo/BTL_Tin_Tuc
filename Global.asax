@@ -1,1 +1,1 @@
-<%@ Application Language="C#" CodeFile="Global.asax.cs" Inherits="NewsManagement.Global" %>
+<%@ Application Language="C#" CodeFile="Global.asax.cs" Inherits="NewsWebsite.Global" %>

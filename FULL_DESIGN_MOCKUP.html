@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewsWebsite - Full Design Mockup</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 0;
+        }
+        
+        .header-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        
+        .header-nav a {
+            color: #495057;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+        }
+        
+        .header-nav a:hover {
+            color: #007bff;
+        }
+        
+        .btn-login {
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        
+        .btn-login:hover {
+            background-color: #1a252f;
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+        }
+        
+        /* Cards */
+        .card-article {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .card-article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15) !important;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #e9ecef;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-category a {
+            color: #6c757d;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .footer-category a:hover {
+            color: #007bff;
+        }
+        
+        /* Section Divider */
+        .section-divider {
+            height: 4px;
+            width: 40px;
+            background-color: #ff6b35;
+            margin-right: 15px;
+        }
+        
+        /* Page Separator */
+        .page-separator {
+            height: 100px;
+            background: repeating-linear-gradient(
+                45deg,
+                #f0f0f0,
+                #f0f0f0 10px,
+                #ffffff 10px,
+                #ffffff 20px
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 80px 0;
+            position: relative;
+        }
+        
+        .page-separator::before {
+            content: attr(data-page-name);
+            background: white;
+            padding: 10px 30px;
+            border: 2px solid #2c3e50;
+            border-radius: 5px;
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================ -->
+    <!-- PAGE 1: HOME PAGE -->
+    <!-- ============================================ -->
+    
+    <header>
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <span style="font-size: 1.8rem; margin-right: 10px;">📰</span>
+                    <a class="header-logo" href="#">Báo Mới</a>
+                </div>
+                <nav class="header-nav d-none d-md-flex align-items-center">
+                    <a href="#">Công nghệ</a>
+                    <a href="#">Kinh tế</a>
+                    <a href="#">Du lịch</a>
+                    <a href="#">Sức khỏe</a>
+                    <a href="#">Văn hóa</a>
+                    <a href="#">Ẩm thực</a>
+                </nav>
+                <div class="d-flex align-items-center">
+                    <a href="#" style="margin-right: 15px; color: #495057; font-size: 1.2rem;">🔍</a>
+                    <a class="btn-login" href="#">Đăng nhập →</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container" style="padding-top: 30px; padding-bottom: 30px;">
+        <!-- Search Box -->
+        <div class="mb-4">
+            <div class="input-group" style="max-width: 600px; margin: 0 auto;">
+                <input type="text" class="form-control" placeholder="Tìm kiếm bài viết...">
+                <button class="btn btn-primary" type="button">Tìm kiếm</button>
+            </div>
+        </div>
+        
+        <!-- Featured Article (Hero) -->
+        <div class="card mb-5 shadow-sm" style="border: none;">
+            <div class="row g-0">
+                <div class="col-md-6 hero-gradient">
+                    <div style="text-align: center; color: white; z-index: 1;">
+                        <div style="font-size: 4rem;">📰</div>
+                        <p style="margin-top: 20px;">Hình ảnh bài viết</p>
+                    </div>
+                    <button class="btn btn-light btn-sm" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); opacity: 0.8; border-radius: 50%; width: 40px; height: 40px; z-index: 10;">‹</button>
+                    <button class="btn btn-light btn-sm" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); opacity: 0.8; border-radius: 50%; width: 40px; height: 40px; z-index: 10;">›</button>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body p-4">
+                        <span class="badge bg-secondary mb-2">Công nghệ</span>
+                        <h2 class="card-title mb-3">Tiêu đề bài viết nổi bật sẽ hiển thị ở đây với độ dài vừa phải</h2>
+                        <p class="card-text text-muted">Tóm tắt bài viết sẽ hiển thị ở đây với độ dài vừa phải để người đọc có thể nắm bắt nội dung chính của bài viết một cách nhanh chóng và hiệu quả.</p>
+                        <a class="btn btn-primary mt-3" href="#">Đọc bài viết</a>
+                        <div class="mt-3 text-center">
+                            <small class="text-muted">Bài viết 1 / 5</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Latest News Grid -->
+        <div class="mb-4">
+            <div class="d-flex align-items-center mb-4">
+                <div class="section-divider"></div>
+                <h2 class="mb-0">Tin tức mới nhất</h2>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm card-article" style="border: none;">
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 200px; display: flex; align-items: center; justify-content: center; color: white;">
+                            <span style="font-size: 3rem;">📰</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="badge bg-secondary mb-2">Công nghệ</span>
+                            <h5 class="card-title">Tiêu đề bài viết số 1</h5>
+                            <p class="card-text text-muted">Tóm tắt bài viết sẽ hiển thị ở đây với độ dài vừa phải để người đọc có thể nắm bắt nội dung.</p>
+                        </div>
+                        <div class="card-footer bg-white d-flex justify-content-between align-items-center">
+                            <small class="text-muted">Tác giả | 01/01/2024</small>
+                            <a class="text-primary" href="#" style="text-decoration: none;">Đọc thêm →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm card-article" style="border: none;">
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 200px; display: flex; align-items: center; justify-content: center; color: white;">
+                            <span style="font-size: 3rem;">📰</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="badge bg-secondary mb-2">Kinh tế</span>
+                            <h5 class="card-title">Tiêu đề bài viết số 2</h5>
+                            <p class="card-text text-muted">Tóm tắt bài viết sẽ hiển thị ở đây với độ dài vừa phải để người đọc có thể nắm bắt nội dung.</p>
+                        </div>
+                        <div class="card-footer bg-white d-flex justify-content-between align-items-center">
+                            <small class="text-muted">Tác giả | 02/01/2024</small>
+                            <a class="text-primary" href="#" style="text-decoration: none;">Đọc thêm →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm card-article" style="border: none;">
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 200px; display: flex; align-items: center; justify-content: center; color: white;">
+                            <span style="font-size: 3rem;">📰</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="badge bg-secondary mb-2">Du lịch</span>
+                            <h5 class="card-title">Tiêu đề bài viết số 3</h5>
+                            <p class="card-text text-muted">Tóm tắt bài viết sẽ hiển thị ở đây với độ dài vừa phải để người đọc có thể nắm bắt nội dung.</p>
+                        </div>
+                        <div class="card-footer bg-white d-flex justify-content-between align-items-center">
+                            <small class="text-muted">Tác giả | 03/01/2024</small>
+                            <a class="text-primary" href="#" style="text-decoration: none;">Đọc thêm →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pagination -->
+        <div class="d-flex justify-content-between align-items-center mt-4">
+            <button class="btn btn-outline-secondary">« Trang trước</button>
+            <span class="text-muted">Trang 1 / 5</span>
+            <button class="btn btn-outline-secondary">Trang sau »</button>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <span style="font-size: 1.5rem; margin-right: 8px;">📰</span>
+                        <strong class="header-logo">Báo Mới</strong>
+                    </div>
+                    <p class="text-muted">Nguồn tin tức đáng tin cậy của bạn.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h6 class="mb-3"><strong>Chuyên mục</strong></h6>
+                    <div class="footer-category">
+                        <a href="#">Công nghệ</a>
+                        <a href="#">Kinh tế</a>
+                        <a href="#">Du lịch</a>
+                        <a href="#">Sức khỏe</a>
+                        <a href="#">Văn hóa</a>
+                        <a href="#">Ẩm thực</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h6 class="mb-3"><strong>Liên kết nhanh</strong></h6>
+                    <div class="footer-category">
+                        <a href="#">Trang chủ</a>
+                        <a href="#">Tìm kiếm</a>
+                        <a href="#">Đăng nhập</a>
+                        <a href="#">Quản trị</a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center text-muted">
+                <p>&copy; 2024 Báo Mới. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- ============================================ -->
+    <!-- PAGE SEPARATOR -->
+    <!-- ============================================ -->
+    <div class="page-separator" data-page-name="TRANG ĐĂNG NHẬP"></div>
+    
+    <!-- ============================================ -->
+    <!-- PAGE 2: LOGIN PAGE -->
+    <!-- ============================================ -->
+    
+    <header>
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <span style="font-size: 1.8rem; margin-right: 10px;">📰</span>
+                    <a class="header-logo" href="#">Báo Mới</a>
+                </div>
+                <nav class="header-nav d-none d-md-flex align-items-center">
+                    <a href="#">Công nghệ</a>
+                    <a href="#">Kinh tế</a>
+                    <a href="#">Du lịch</a>
+                    <a href="#">Sức khỏe</a>
+                    <a href="#">Văn hóa</a>
+                    <a href="#">Ẩm thực</a>
+                </nav>
+                <div class="d-flex align-items-center">
+                    <a href="#" style="margin-right: 15px; color: #495057; font-size: 1.2rem;">🔍</a>
+                    <a class="btn-login" href="#">Đăng nhập →</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div style="min-height: 70vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(to bottom, #e3f2fd, white); padding: 40px 0;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    <div class="card shadow-lg" style="border: none; border-radius: 15px;">
+                        <div class="card-body p-5">
+                            <div class="text-center mb-4">
+                                <div style="font-size: 3rem; color: #2c3e50; margin-bottom: 10px;">📰</div>
+                                <h2 class="mb-2" style="color: #2c3e50; font-weight: bold;">Tin Tức 24/7</h2>
+                                <p class="text-muted">Đăng nhập hoặc tạo tài khoản mới</p>
+                            </div>
+                            
+                            <!-- Tabs -->
+                            <ul class="nav nav-pills mb-4" style="border-radius: 8px; background-color: #f0f0f0; padding: 5px;">
+                                <li class="nav-item flex-fill">
+                                    <a class="nav-link active" href="#" style="border-radius: 8px; text-align: center; color: #495057; background: white;">Đăng nhập</a>
+                                </li>
+                                <li class="nav-item flex-fill">
+                                    <a class="nav-link" href="#" style="border-radius: 8px; text-align: center; color: #495057;">Đăng ký</a>
+                                </li>
+                            </ul>
+                            
+                            <!-- Login Form -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Email</label>
+                                <input type="email" class="form-control" placeholder="your@email.com">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Mật khẩu</label>
+                                <input type="password" class="form-control" placeholder="••••••••">
+                            </div>
+                            <button class="btn btn-primary w-100" style="background-color: #2c3e50; border: none; padding: 12px; border-radius: 8px; font-weight: bold;">Đăng nhập</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <span style="font-size: 1.5rem; margin-right: 8px;">📰</span>
+                        <strong class="header-logo">Báo Mới</strong>
+                    </div>
+                    <p class="text-muted">Nguồn tin tức đáng tin cậy của bạn.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h6 class="mb-3"><strong>Chuyên mục</strong></h6>
+                    <div class="footer-category">
+                        <a href="#">Công nghệ</a>
+                        <a href="#">Kinh tế</a>
+                        <a href="#">Du lịch</a>
+                        <a href="#">Sức khỏe</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h6 class="mb-3"><strong>Liên kết nhanh</strong></h6>
+                    <div class="footer-category">
+                        <a href="#">Trang chủ</a>
+                        <a href="#">Tìm kiếm</a>
+                        <a href="#">Đăng nhập</a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center text-muted">
+                <p>&copy; 2024 Báo Mới. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- ============================================ -->
+    <!-- PAGE SEPARATOR -->
+    <!-- ============================================ -->
+    <div class="page-separator" data-page-name="TRANG CHI TIẾT BÀI VIẾT"></div>
+    
+    <!-- ============================================ -->
+    <!-- PAGE 3: DETAILS PAGE -->
+    <!-- ============================================ -->
+    
+    <header>
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <span style="font-size: 1.8rem; margin-right: 10px;">📰</span>
+                    <a class="header-logo" href="#">Báo Mới</a>
+                </div>
+                <nav class="header-nav d-none d-md-flex align-items-center">
+                    <a href="#">Công nghệ</a>
+                    <a href="#">Kinh tế</a>
+                    <a href="#">Du lịch</a>
+                    <a href="#">Sức khỏe</a>
+                    <a href="#">Văn hóa</a>
+                    <a href="#">Ẩm thực</a>
+                </nav>
+                <div class="d-flex align-items-center">
+                    <a href="#" style="margin-right: 15px; color: #495057; font-size: 1.2rem;">🔍</a>
+                    <a class="btn-login" href="#">Đăng nhập →</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container" style="padding-top: 40px; padding-bottom: 40px;">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <span class="badge bg-secondary mb-3">Công nghệ</span>
+                <h1 class="mb-4" style="font-weight: bold; color: #2c3e50;">Tiêu đề bài viết chi tiết sẽ hiển thị ở đây với độ dài đầy đủ</h1>
+                
+                <div class="d-flex align-items-center text-muted mb-4">
+                    <span style="margin-right: 20px;">👤 Tác giả</span>
+                    <span>📅 01/01/2024</span>
+                </div>
+                
+                <!-- Hero Image -->
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 400px; display: flex; align-items: center; justify-content: center; color: white; border-radius: 8px; margin-bottom: 32px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 5rem;">📰</div>
+                        <p style="margin-top: 20px; font-size: 1.2rem;">Hình ảnh bài viết</p>
+                    </div>
+                </div>
+                
+                <p class="lead text-muted mb-4">Tóm tắt bài viết sẽ hiển thị ở đây với độ dài vừa phải để người đọc có thể nắm bắt nội dung chính của bài viết một cách nhanh chóng và hiệu quả.</p>
+                
+                <div style="line-height: 1.8; color: #495057; font-size: 1.1rem;">
+                    <p>Nội dung bài viết sẽ được hiển thị ở đây với định dạng đầy đủ. Đây là đoạn văn đầu tiên của bài viết, chứa thông tin quan trọng và thu hút người đọc.</p>
+                    <p>Đoạn văn thứ hai tiếp tục phát triển nội dung, cung cấp thêm thông tin chi tiết về chủ đề được đề cập. Nội dung được trình bày một cách rõ ràng và dễ hiểu.</p>
+                    <p>Đoạn văn cuối cùng tóm tắt lại những điểm chính và đưa ra kết luận cho bài viết. Người đọc có thể nắm bắt được toàn bộ thông tin quan trọng từ bài viết này.</p>
+                </div>
+                
+                <div class="mt-5">
+                    <a class="btn btn-outline-secondary" href="#">« Quay lại trang chủ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <span style="font-size: 1.5rem; margin-right: 8px;">📰</span>
+                        <strong class="header-logo">Báo Mới</strong>
+                    </div>
+                    <p class="text-muted">Nguồn tin tức đáng tin cậy của bạn.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h6 class="mb-3"><strong>Chuyên mục</strong></h6>
+                    <div class="footer-category">
+                        <a href="#">Công nghệ</a>
+                        <a href="#">Kinh tế</a>
+                        <a href="#">Du lịch</a>
+                        <a href="#">Sức khỏe</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h6 class="mb-3"><strong>Liên kết nhanh</strong></h6>
+                    <div class="footer-category">
+                        <a href="#">Trang chủ</a>
+                        <a href="#">Tìm kiếm</a>
+                        <a href="#">Đăng nhập</a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center text-muted">
+                <p>&copy; 2024 Báo Mới. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
